@@ -11,6 +11,7 @@ html {
 body {
     min-height: 100vh;
     font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(230, 230, 230);
     /* display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,6 +19,83 @@ body {
 }
 
 .header {
+    min-width: 500px;
     margin-bottom: 50px;
     background-image: url('https://media4.giphy.com/media/3o7rc6sa2RvKo8K5EI/giphy.gif?cid=ecf05e470x0srnbfbgsbsy9booz5hsjdxkrx1vc9fttzl2mb&rid=giphy.gif&ct=g');
+    background-repeat: round;
+    background-size: cover;
+    height: 200px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 1px 1px 50px gray;
+    padding: 30px;
+    color: rgb(255, 255, 0);
+}
+
+/* weather description styles */
+.clear-sky {
+    background-image: url('https://media2.giphy.com/media/Xlk4JrwQE7XEs/giphy.gif?cid=ecf05e47yr90ppolpn4mnuqbzuu4u122emcu80h6rym7uaax&rid=giphy.gif&ct=g');
+    color: black;
+    box-shadow: 1px 1px 50px lightskyblue;
+}
+
+.few-clouds {
+    background-image: url('https://media1.giphy.com/media/k3CeSrt9IZ6aorWCy1/giphy.gif?cid=ecf05e47idccohsynij34aunnwnik7mu3m1gxyyiigifii5t&rid=giphy.gif&ct=g');
+    color: black;
+    box-shadow: 1px 1px 50px rgb(101, 159, 196);
+}
+
+.scattered-clouds {
+    background-image: url('https://media1.giphy.com/media/G1T5M0qT6ZJlu/giphy.gif?cid=ecf05e47kn8wfkjxwxqm5xu592zohss0xdzivc8n9bs9knxe&rid=giphy.gif&ct=g');
+    color: black;
+    box-shadow: 1px 1px 50px rgb(101, 193, 196);
+}
+
+.header-title > h1 {
+    margin-bottom: 30px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input > input {
+    width: 50%;
+    border-radius: 5px 0 0 5px;
+    font-size: 1.2em;
+    padding: 5px;
+    border: none;
+    opacity: 95%;
+}
+
+.input > input:focus {
+    outline: none;
+}
+
+.input > button {
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 0 5px 5px 0;
+    text-decoration: none;
+    width: 100px;
+    padding: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(116, 116, 116, .80);
+}
+
+.input > button:hover {
+    background-color: rgb(116, 116, 116);;
+}
+
+.units > label {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+
+.units > input:checked + label {
+    font-weight: bold;
 }

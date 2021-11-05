@@ -3,4 +3,3 @@ import UIinteratctions from './UI_interactions';
 import interatction from './UI_interactions';
 
 UIinteratctions();
-console.log(new Date());
