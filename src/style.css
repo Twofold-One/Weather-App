@@ -11,4 +11,13 @@ html {
 body {
     min-height: 100vh;
     font-family: 'Courier New', Courier, monospace;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+.header {
+    margin-bottom: 50px;
+    background-image: url('https://media4.giphy.com/media/3o7rc6sa2RvKo8K5EI/giphy.gif?cid=ecf05e470x0srnbfbgsbsy9booz5hsjdxkrx1vc9fttzl2mb&rid=giphy.gif&ct=g');
 }

@@ -1,5 +1,5 @@
 const API_KEY = 'ec55f64c4e4b2603ec7d267c52a12943';
-const weather = {};
+// const weather = {};
 
 function weatherData(data) {
     const processedData = {
@@ -8,6 +8,7 @@ function weatherData(data) {
         temp: Math.round(data.main.temp),
         feelsLike: Math.round(data.main.feels_like),
         weather: data.weather[0].main,
+        weatherDescription: data.weather[0].description,
         icon: data.weather[0].icon,
         windSpeed: Math.round(data.wind.speed),
         pressure: data.main.pressure,
@@ -28,7 +29,7 @@ export default async function getCurrentWeather(city) {
         }
 
         const currentWeatherData = await response.json();
-        // console.log(currentWeatherData);
+        console.log(currentWeatherData);
         // console.log(
         //     `${currentWeatherData.name}, ${currentWeatherData.sys.country}`
         // );

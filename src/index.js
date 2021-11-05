@@ -1,5 +1,6 @@
 import './style.css';
-import getCurrentWeather from './weather_api_data';
+import UIinteratctions from './UI_interactions';
 import interatction from './UI_interactions';
 
-interatction();
+UIinteratctions();
+console.log(new Date());

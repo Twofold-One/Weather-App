@@ -5,22 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="bundle.js" defer></script>
+    <script src="https://kit.fontawesome.com/ae38fdb830.js" crossorigin="anonymous"></script>
     <title>Weather App</title>
 </head>
 <body>
-    <div class="search-field">
-        <div class="input">
-            <label for="location"></label>
-            <input type="search" id="location" placeholder="Search city">
-            <button id="search-btn">Search</button>
+    <div class="header">
+        <div class="header-title">
+            <h1>Weather App</h1>
         </div>
-        <div class="units">
-            <input type="radio" name="metric" checked>
-            <label for="metric">Metric: °C, m/s</label>
-            <input type="radio" name="imperial">
-            <label for="metric">Imperial: °F, mph</label>
+        <div class="search-field">
+            <div class="input">
+                <label for="location"></label>
+                <input type="search" id="location" placeholder="Search city">
+                <button id="search-btn">Search</button>
+            </div>
+            <div class="units">
+                <!-- TODO group of radio buttons -->
+                <input type="radio" name="metric" checked>
+                <label for="metric">Metric: °C, m/s</label>
+                <input type="radio" name="imperial">
+                <label for="metric">Imperial: °F, mph</label>
+            </div>
         </div>
     </div>
+    <div class="main-field">
+        <div class="date">
+            <span>Nov 5</span>
+        </div>
+        <div class="city">
+            <span>Krasnoyarsk, RU</span>
+        </div>
+        <div class="temperature-and-icon">
+            <img id="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png">
+            <span>-10 °C</span>
+        </div>
+        <div class="description">
+            <span>Feels like -15 °C.</span>
+            <span>Few clouds.</span>
+        </div>
+        <div class="info">
+            <i class="fas fa-wind"></i><span>5 m/s</span>
+            <i class="fas fa-tint"></i><span>70 %</span>
+            <i class="fas fa-tachometer-alt"></i><span>1000 hPa</span>
+        </div>  
+    </div>
+
 
 </body>
 </html>
