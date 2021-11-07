@@ -6,9 +6,12 @@ import getCurrentWeather from './weather_api_data';
 const header = id('header');
 const location = id('location');
 const searchBtn = id('search-btn');
+const metricRadio = id('metric');
+const imperialRadio = id('imperial');
 
 // main elements
 const main = id('main');
+const loader = id('loader');
 const mainDate = id('main-date');
 const mainLocation = id('main-location');
 const mainWeatherIcon = id('main-weather-icon');
@@ -19,10 +22,15 @@ const mainWind = id('main-wind');
 const mainHumidity = id('main-humidity');
 const mainPressure = id('main-pressure');
 
-function headerGifOnWeather(weather) {
-    switch (weather) {
-        case 'Clear sky':
-            header.className = 'header clear-sky';
+function headerGifOnWeather(data) {
+    switch (data.weather) {
+        case 'Clear':
+            console.log(data.temp);
+            if (data.temp < 0) {
+                header.className = 'header clear-sky-winter';
+            } else {
+                header.className = 'header clear-sky';
+            }
             break;
         case 'Clouds':
             header.className = 'header few-clouds';
@@ -42,27 +50,66 @@ function headerGifOnWeather(weather) {
 }
 
 function mainWindowAnimation() {
-    main.classList.remove('fade-in');
     // trick to restart animation
+    main.classList.remove('fade-in');
     void main.offsetWidth;
     main.classList.add('fade-in');
 }
 
+function searchOnEnter() {
+    location.addEventListener('keyup', (e) => {
+        if (e.keyCode === 13) {
+            searchBtn.click();
+        }
+    });
+}
+
+function addLoadingComponent() {
+    // trick to restart animation
+    main.classList.remove('fade-in');
+    void main.offsetWidth;
+    main.classList.add('load');
+    loader.classList.add('start');
+}
+
+function removeLoadingComponent() {
+    main.classList.remove('load');
+    loader.classList.remove('start');
+}
+
+function errorMessage() {
+    main.textContent = "There's no such city or location";
+}
+
 export default function UIinteratctions() {
+    searchOnEnter();
     searchBtn.addEventListener('click', () => {
-        getCurrentWeather(location.value).then((data) => {
+        const units = metricRadio.checked ? 'metric' : 'imperial';
+        const temperatureUnits = metricRadio.checked ? '°C' : '°F';
+        const windSpeedUnits = metricRadio.checked ? 'm/s' : 'mph';
+        addLoadingComponent();
+        console.log(getCurrentWeather(location.value, units).isFulfilled);
+        getCurrentWeather(location.value, units).then((data) => {
+            if (!data) {
+                console.log('no data');
+                errorMessage();
+                removeLoadingComponent();
+                return;
+            }
+            console.log(metricRadio.checked, imperialRadio.checked);
             console.log(data);
-            headerGifOnWeather(data.weather);
+            headerGifOnWeather(data);
             mainWindowAnimation();
             mainDate.textContent = format(new Date(), 'MMM d, p');
             mainLocation.textContent = `${data.city}, ${data.location}`;
-            mainTemperature.textContent = `${data.temp} °C`;
-            mainFeelsLike.textContent = `Feels like ${data.feelsLike} °C.`;
+            mainTemperature.textContent = `${data.temp} ${temperatureUnits}`;
+            mainFeelsLike.textContent = `Feels like ${data.feelsLike} ${temperatureUnits}.`;
             mainDescription.textContent = `${data.weatherDescription}.`;
-            mainWind.textContent = `${data.windSpeed} m/s`;
+            mainWind.textContent = `${data.windSpeed} ${windSpeedUnits}`;
             mainHumidity.textContent = `${data.humidity} %`;
             mainPressure.textContent = `${data.pressure} hPa`;
             mainWeatherIcon.src = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
+            removeLoadingComponent();
         });
     });
 }
