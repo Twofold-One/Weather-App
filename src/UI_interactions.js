@@ -12,6 +12,7 @@ const imperialRadio = id('imperial');
 // main elements
 const main = id('main');
 const loader = id('loader');
+const error = id('error-message');
 const mainDate = id('main-date');
 const mainLocation = id('main-location');
 const mainWeatherIcon = id('main-weather-icon');
@@ -45,7 +46,7 @@ function headerGifOnWeather(data) {
             header.className = 'header mist';
             break;
         default:
-            header.className = 'header clear-sky';
+            header.className = 'header few-clouds';
     }
 }
 
@@ -77,8 +78,14 @@ function removeLoadingComponent() {
     loader.classList.remove('start');
 }
 
-function errorMessage() {
-    main.textContent = "There's no such city or location";
+function errorMessage(data) {
+    if (!data) {
+        console.log('no data');
+        error.classList.add('start');
+        removeLoadingComponent();
+    } else {
+        error.classList.remove('start');
+    }
 }
 
 export default function UIinteratctions() {
@@ -90,14 +97,9 @@ export default function UIinteratctions() {
         addLoadingComponent();
         console.log(getCurrentWeather(location.value, units).isFulfilled);
         getCurrentWeather(location.value, units).then((data) => {
-            if (!data) {
-                console.log('no data');
-                errorMessage();
-                removeLoadingComponent();
-                return;
-            }
             console.log(metricRadio.checked, imperialRadio.checked);
             console.log(data);
+            errorMessage(data);
             headerGifOnWeather(data);
             mainWindowAnimation();
             mainDate.textContent = format(new Date(), 'MMM d, p');
