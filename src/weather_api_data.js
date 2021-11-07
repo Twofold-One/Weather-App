@@ -1,5 +1,4 @@
 const API_KEY = 'ec55f64c4e4b2603ec7d267c52a12943';
-// const weather = {};
 
 function weatherData(data) {
     const processedData = {
@@ -29,38 +28,9 @@ export default async function getCurrentWeather(city, units = 'metric') {
         }
 
         const currentWeatherData = await response.json();
-        console.log(currentWeatherData);
 
         return weatherData(currentWeatherData);
     } catch (err) {
         console.log(err);
     }
 }
-
-// console.log(
-//     `${currentWeatherData.name}, ${currentWeatherData.sys.country}`
-// );
-// console.log(`${Math.round(currentWeatherData.main.temp)} °C`);
-// console.log(
-//     `Feels like ${Math.round(currentWeatherData.main.feels_like)} °C`
-// );
-// console.log(`${currentWeatherData.weather[0].main}`);
-// console.log(`${currentWeatherData.weather[0].icon}`);
-// console.log(`${Math.round(currentWeatherData.wind.speed)} m/s`);
-// console.log(`${currentWeatherData.main.pressure} hPa`);
-// console.log(`${currentWeatherData.main.humidity} %`);
-
-// this construction to use
-// cool!!!
-
-// getCurrentWeather('London').then((json) => {
-//     console.log(json);
-//     console.log(json.city);
-// });
-
-// this construction as an option
-
-// (async () => {
-//     weather = await getCurrentWeather('Moscow');
-//     console.log(weather);
-// })();

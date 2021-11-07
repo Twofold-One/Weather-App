@@ -12,6 +12,8 @@ body {
     min-height: 100vh;
     font-family: 'Courier New', Courier, monospace;
     background-color: rgb(230, 230, 230);
+    background-image: url(/src/img/stacked-waves-haikei.svg);
+    background-size: cover;
     /* display: flex;
     flex-direction: column;
     justify-content: center;

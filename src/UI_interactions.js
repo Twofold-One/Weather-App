@@ -22,11 +22,13 @@ const mainDescription = id('main-description');
 const mainWind = id('main-wind');
 const mainHumidity = id('main-humidity');
 const mainPressure = id('main-pressure');
+const windIcon = id('wind-icon');
+const humidityIcon = id('humidity-icon');
+const pressureIcon = id('pressure-icon');
 
 function headerGifOnWeather(data) {
     switch (data.weather) {
         case 'Clear':
-            console.log(data.temp);
             if (data.temp < 0) {
                 header.className = 'header clear-sky-winter';
             } else {
@@ -78,9 +80,18 @@ function removeLoadingComponent() {
     loader.classList.remove('start');
 }
 
+function showIcons() {
+    windIcon.className = '';
+    humidityIcon.className = '';
+    pressureIcon.className = '';
+
+    windIcon.className = 'fas fa-wind';
+    humidityIcon.className = 'fas fa-tint';
+    pressureIcon.className = 'fas fa-tachometer-alt';
+}
+
 function errorMessage(data) {
     if (!data) {
-        console.log('no data');
         error.classList.add('start');
         removeLoadingComponent();
     } else {
@@ -95,13 +106,11 @@ export default function UIinteratctions() {
         const temperatureUnits = metricRadio.checked ? '°C' : '°F';
         const windSpeedUnits = metricRadio.checked ? 'm/s' : 'mph';
         addLoadingComponent();
-        console.log(getCurrentWeather(location.value, units).isFulfilled);
         getCurrentWeather(location.value, units).then((data) => {
-            console.log(metricRadio.checked, imperialRadio.checked);
-            console.log(data);
             errorMessage(data);
             headerGifOnWeather(data);
             mainWindowAnimation();
+            showIcons();
             mainDate.textContent = format(new Date(), 'MMM d, p');
             mainLocation.textContent = `${data.city}, ${data.location}`;
             mainTemperature.textContent = `${data.temp} ${temperatureUnits}`;
