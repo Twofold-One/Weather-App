@@ -20,7 +20,6 @@
                 <button id="search-btn">Search</button>
             </div>
             <div class="units">
-                <!-- TODO group of radio buttons -->
                 <input type="radio" id="metric" name="units" checked>
                 <label for="metric">Metric: °C, m/s</label>
                 <input type="radio" id="imperial" name="units">
@@ -34,26 +33,24 @@
     </div>
     <div id="main" class="main-field">
         <div class="date">
-            <span id="main-date">Nov 5</span>
+            <span id="main-date"></span>
         </div>
         <div class="city">
-            <span id="main-location">Krasnoyarsk, RU</span>
+            <span id="main-location"></span>
         </div>
         <div class="temperature-and-icon">
-            <img id="main-weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png">
-            <span id="main-temperature">-10 °C</span>
+            <img id="main-weather-icon">
+            <span id="main-temperature"></span>
         </div>
         <div class="description">
-            <span id="main-feels-like">Feels like -15 °C.</span>
-            <span id="main-description">Few clouds.</span>
+            <span id="main-feels-like"></span>
+            <span id="main-description"></span>
         </div>
         <div class="info">
-            <i class="fas fa-wind"></i><span id="main-wind">5 m/s</span>
-            <i class="fas fa-tint"></i><span id="main-humidity">70 %</span>
-            <i class="fas fa-tachometer-alt"></i><spa id="main-pressure">1000 hPa</span>
+            <i id="wind-icon"></i><span id="main-wind"></span>
+            <i id="humidity-icon"></i><span id="main-humidity"></span>
+            <i id="pressure-icon"></i><span id="main-pressure"></span>
         </div>  
     </div>
-
-
 </body>
 </html>
